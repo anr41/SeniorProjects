@@ -19,20 +19,28 @@ public class CollisionScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		AudioSource audio = GetComponent<AudioSource> ();
 		if (collision == 0) {
 			transform.position += Vector3.left * Time.deltaTime;
+			//audio.Play ();
 		} else if (collision == 1) {
 			transform.position += Vector3.back * Time.deltaTime;
+			audio.Play ();
 		} else if(collision == 2) {
-				transform.position += Vector3.left * Time.deltaTime;
-				timer1 = Time.time;
+			audio.Play ();
+			transform.position += Vector3.left * Time.deltaTime;
+			timer1 = Time.time;
+
 			if (timer1 >= end_time + 3.0) {
+				audio.Play ();
 				collision = 3;
 				timer2 = timer1;
 			}
 		} else if (collision == 3) {
-				transform.position += Vector3.forward * Time.deltaTime; 
-			    timer2 += Time.deltaTime;
+			audio.Play ();
+			transform.position += Vector3.forward * Time.deltaTime; 
+			timer2 += Time.deltaTime;
+
 			if (timer2 >= timer1 + difference) {
 				collision = 0;
 			}
